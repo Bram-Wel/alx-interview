@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """Pascal's Triangle."""
 
-import math
-
 
 def pascal_triangle(n):
     """Create a Pascal Triangle.
@@ -30,4 +28,17 @@ def combine(n, k):
     Return:
         nCk combination
     """
-    return int(math.factorial(n) / (math.factorial(k) * math.factorial(n - k)))
+    return int(factorial(n) / (factorial(k) * factorial(n - k)))
+
+
+def factorial(n):
+    """Compute factorial.
+
+    Args:
+        n (int): Number
+    Return:
+        Factorial of n
+    """
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
