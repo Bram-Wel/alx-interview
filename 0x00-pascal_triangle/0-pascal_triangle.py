@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Pascal's Triangle."""
 
+import math
+
 
 def pascal_triangle(n):
     """Create a Pascal Triangle.
@@ -9,14 +11,23 @@ def pascal_triangle(n):
         n (int): Height of the Triangle / Also no. of rows
     Return: A list of lists/rows
     """
-    triangle = []
-    if n > 0:
-        for no in range(n):
-            triangle.append([])
-            triangle[no].append(1)
-            for m in range(1, no):
-                triangle[no].append(triangle[no - 1][m - 1]
-                                    + triangle[no - 1][m])
-            triangle[no].append(1)
-        triangle.insert(0, [1])
+    triangle = []  # Initialise a triangle
+    for i in range(n):
+        row = []  # Empty row
+        for j in range(i + 1):
+            # Append Items to the row
+            row.append(combine(i, j))
+        triangle.append(row)  # Append row to triangle
     return triangle
+
+
+def combine(n, k):
+    """Compute combinations for Pascal's triangle.
+
+    Args:
+        n (int): Row no.
+        k (int): Column no.
+    Return:
+        nCk combination
+    """
+    return int(math.factorial(n) / (math.factorial(k) * math.factorial(n - k)))
